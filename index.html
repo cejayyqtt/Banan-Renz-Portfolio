@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0B0B0E" />
+  <meta name="color-scheme" content="dark" />
+  <title>NOCTURNE EP | Renz Allen A. Banan | GEARTS Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+          },
+          colors: {
+            vinylDark: '#0B0B0E',
+            vinylSurface: '#14141A',
+            vinylBorder: '#23232D',
+            neonPurple: '#A855F7',
+            tapeAmber: '#F59E0B'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      scroll-padding-top: 120px;
+    }
+    body {
+      background-color: #0B0B0E;
+      color: #E2E8F0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+    /* Studio Ambient Lighting */
+    body::before {
+      content: '';
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 45% at 15% 10%, rgba(168, 85, 247, 0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 85%, rgba(245, 158, 11, 0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 60% at 50% 50%, rgba(18, 18, 26, 0.6) 0%, transparent 100%);
+    }
+    /* Subtle Studio Grid Overlay */
+    body::after {
+      content: '';
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 90%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 90%);
+    }
+    /* Ambient Vinyl Watermark Rings */
+    .bg-vinyl-ring {
+      position: fixed;
+      border-radius: 50%;
+      border: 1px solid rgba(168, 85, 247, 0.07);
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Vinyl Grooves Texture */
+    .vinyl-disc {
+      position: relative;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, #2b2b36 0%, #111116 35%, #181820 55%, #0e0e12 100%);
+      box-shadow: 0 10px 30px -5px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .vinyl-disc::before {
+      content: '';
+      position: absolute; top: 6%; right: 6%; bottom: 6%; left: 6%;
+      border-radius: 50%;
+      background: repeating-radial-gradient(
+        circle at 50% 50%,
+        rgba(0,0,0,0.4) 0px,
+        rgba(255,255,255,0.03) 1px,
+        rgba(0,0,0,0.5) 3px
+      );
+    }
+    /* Disc slide-out on hover */
+    .vinyl-unit { position: relative; transition: all 0.3s ease; }
+    .vinyl-unit:hover .pull-disc { transform: translateX(45px) rotate(45deg); }
+    .pull-disc { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    /* Turntable spin */
+    @keyframes spinDisc { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .spinning { animation: spinDisc 16s linear infinite; }
+
+    /* Justified paragraphs */
+    .jx {
+      text-align: justify;
+      text-justify: inter-word;
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto;
+      overflow-wrap: break-word;
+    }
+
+    /* Video boxes */
+    .vid-wide {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #23232D;
+      background: #000;
+    }
+    .vid-wide iframe { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .vid-tall {
+      position: relative;
+      width: 100%;
+      max-width: 260px;
+      aspect-ratio: 9 / 16;
+      margin: 0 auto;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #23232D;
+      background: #000;
+    }
+    .vid-tall iframe { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+    /* Click or tap to view the full image */
+    .zoomable { cursor: zoom-in; }
+    img[tabindex]:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    .lightbox {
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+      background: rgba(0,0,0,.95);
+      display: none; align-items: center; justify-content: center; flex-direction: column; gap: 14px;
+      padding: 24px;
+      padding-top: calc(24px + env(safe-area-inset-top));
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+      z-index: 1000; cursor: zoom-out;
+      overscroll-behavior: contain;
+      touch-action: pinch-zoom;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 100%;
+      max-height: calc(100vh - 120px);
+      max-height: calc(100dvh - 120px);
+      width: auto; height: auto; object-fit: contain; border-radius: 8px; cursor: zoom-out;
+      -webkit-user-select: none; user-select: none;
+    }
+    .lightbox .lb-cap { color: #94a3b8; font-size: 14px; text-align: center; max-width: 700px; }
+    .lightbox .lb-close {
+      position: absolute; top: calc(14px + env(safe-area-inset-top)); right: 18px;
+      background: rgba(0,0,0,.6); border: 1px solid #A855F7; color: #fff;
+      width: 46px; height: 46px; border-radius: 50%; font-size: 26px; line-height: 1; cursor: pointer;
+    }
+    .lightbox .lb-close:hover { background: #A855F7; }
+
+    /* Mobile menu scroll */
+    .mnav { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .mnav::-webkit-scrollbar { display: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .spinning { animation: none; }
+      .pull-disc { transition: none; }
+    }
+  </style>
+</head>
+<body class="selection:bg-purple-600/30 selection:text-purple-200">
+
+<!-- ==================== AMBIENT VINYL BACKGROUND ==================== -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+  <div class="bg-vinyl-ring w-[600px] h-[600px] -top-48 -right-48 opacity-40"></div>
+  <div class="bg-vinyl-ring w-[450px] h-[450px] -top-32 -right-32 opacity-50"></div>
+  <div class="bg-vinyl-ring w-[300px] h-[300px] -top-16 -right-16 opacity-60"></div>
+  <div class="bg-vinyl-ring w-[150px] h-[150px] top-0 right-0 opacity-70"></div>
+
+  <div class="bg-vinyl-ring w-[700px] h-[700px] -bottom-64 -left-64 opacity-30" style="border-color: rgba(245, 158, 11, 0.05);"></div>
+  <div class="bg-vinyl-ring w-[520px] h-[520px] -bottom-48 -left-48 opacity-40" style="border-color: rgba(245, 158, 11, 0.06);"></div>
+  <div class="bg-vinyl-ring w-[350px] h-[350px] -bottom-32 -left-32 opacity-50" style="border-color: rgba(245, 158, 11, 0.07);"></div>
+
+  <svg class="absolute top-1/3 left-0 w-full h-24 opacity-[0.04] text-purple-400" viewBox="0 0 1200 100" preserveAspectRatio="none">
+    <path d="M0,50 Q150,10 300,50 T600,50 T900,20 T1200,50" fill="none" stroke="currentColor" stroke-width="2" />
+    <path d="M0,50 Q200,90 400,50 T800,50 T1000,80 T1200,50" fill="none" stroke="currentColor" stroke-width="1.5" />
+  </svg>
+</div>
+
+<!-- ==================== HEADER ==================== -->
+<header class="sticky top-0 z-50 bg-[#0B0B0E]/95 backdrop-blur border-b border-[#23232D]" style="padding-top: env(safe-area-inset-top);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-sm">💿</div>
+      <div>
+        <span class="font-bold text-sm tracking-wide text-white block leading-none">NOCTURNE EP</span>
+        <span class="text-[10px] font-mono text-purple-400">SIDE A &amp; B • RENZ ALLEN A. BANAN</span>
+      </div>
+    </div>
+
+    <div class="hidden sm:flex items-center gap-1.5 p-1 bg-[#14141A] rounded-lg border border-[#23232D] text-xs font-mono">
+      <a href="#turntable" class="px-3 py-1 text-slate-300 hover:text-white rounded hover:bg-white/5 transition-all">00_PLAYER</a>
+      <a href="#side-a-tracklist" class="px-3 py-1 text-slate-300 hover:text-white rounded hover:bg-white/5 transition-all">01_SIDE_A</a>
+      <a href="#side-b-records" class="px-3 py-1 text-slate-300 hover:text-white rounded hover:bg-white/5 transition-all">02_SIDE_B</a>
+      <a href="#gatefold-notes" class="px-3 py-1 text-slate-300 hover:text-white rounded hover:bg-white/5 transition-all">03_GATEFOLD</a>
+      <a href="#master-logs" class="px-3 py-1 text-slate-300 hover:text-white rounded hover:bg-white/5 transition-all">04_LOGS</a>
+    </div>
+
+    <div class="hidden sm:flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+      <span class="text-[11px] font-mono text-slate-400">33⅓ RPM</span>
+    </div>
+  </div>
+
+  <!-- Phone menu (swipe sideways) -->
+  <nav class="sm:hidden border-t border-[#23232D] overflow-x-auto mnav" aria-label="Main navigation">
+    <div class="flex gap-2 px-4 py-2 text-[11px] font-mono whitespace-nowrap">
+      <a href="#turntable" class="px-3 py-2 rounded bg-[#14141A] border border-[#23232D] text-slate-200">PLAYER</a>
+      <a href="#side-a-tracklist" class="px-3 py-2 rounded bg-[#14141A] border border-[#23232D] text-slate-200">SIDE A</a>
+      <a href="#side-b-records" class="px-3 py-2 rounded bg-[#14141A] border border-[#23232D] text-slate-200">SIDE B</a>
+      <a href="#gatefold-notes" class="px-3 py-2 rounded bg-[#14141A] border border-[#23232D] text-slate-200">GATEFOLD</a>
+      <a href="#master-logs" class="px-3 py-2 rounded bg-[#14141A] border border-[#23232D] text-slate-200">LOGS</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section id="turntable" class="relative z-10 pt-10 sm:pt-12 pb-16 px-4 sm:px-6 max-w-6xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+    <!-- Turntable -->
+    <div class="lg:col-span-5 bg-[#14141A] p-5 sm:p-6 rounded-2xl border border-[#23232D] shadow-2xl relative">
+      <div class="flex justify-between items-center mb-6 pb-3 border-b border-[#23232D] text-xs font-mono text-slate-400">
+        <span>MODEL: GEARTS</span>
+        <span class="text-tapeAmber">STATUS: READY</span>
+      </div>
+
+      <div class="flex justify-center items-center py-4">
+        <div class="w-56 h-56 sm:w-64 sm:h-64 vinyl-disc flex items-center justify-center spinning">
+          <div class="w-24 h-24 rounded-full bg-purple-700/80 border-4 border-[#0B0B0E] flex flex-col items-center justify-center text-center p-2 z-10 shadow-inner">
+            <span class="text-[9px] font-mono font-bold text-purple-200">RENZ BANAN</span>
+            <span class="text-[11px] font-bold text-white leading-tight">NOCTURNE</span>
+            <span class="text-[8px] font-mono text-purple-200 mt-0.5">SIDE A/B</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-[#23232D] flex items-center justify-between text-xs font-mono">
+        <div class="flex items-center gap-2">
+          <button id="spin-toggle-btn" type="button" onclick="toggleSpin()" class="bg-purple-600 hover:bg-purple-500 text-white px-3 py-2 min-h-[44px] rounded font-bold transition-all flex items-center gap-1.5">
+            <span id="play-icon">⏸</span> <span id="play-text">PAUSE</span>
+          </button>
+        </div>
+        <span class="text-purple-400 font-semibold">GEARTS FINALS</span>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="lg:col-span-7 flex flex-col justify-center">
+      <div class="inline-flex items-center gap-2 text-xs font-mono text-purple-400 bg-purple-950/40 border border-purple-800/40 px-3 py-1 rounded-full w-fit mb-4">
+        <span>RECORD LABEL:</span> GEARTS ART PORTFOLIO
+      </div>
+
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none mb-3">
+        NOCTURNE EP
+      </h1>
+      <p class="text-lg md:text-xl text-slate-300 font-medium italic mb-6">
+        "Finding my tempo through art, rhythm, and self-discovery."
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-[#14141A] rounded-xl border border-[#23232D] text-xs font-mono mb-6">
+        <div>
+          <span class="text-slate-500 block text-[10px]">CREATOR</span>
+          <strong class="text-white">Renz Allen A. Banan</strong>
+        </div>
+        <div>
+          <span class="text-slate-500 block text-[10px]">COURSE / SEC</span>
+          <strong class="text-white">BSIT 3A</strong>
+        </div>
+        <div>
+          <span class="text-slate-500 block text-[10px]">SUBJECT</span>
+          <strong class="text-purple-300">GEARTS Art Appreciation</strong>
+        </div>
+        <div>
+          <span class="text-slate-500 block text-[10px]">REQUIREMENT</span>
+          <strong class="text-white">Final Portfolio</strong>
+        </div>
+      </div>
+
+      <div class="p-5 bg-gradient-to-r from-purple-950/20 to-[#14141A] rounded-xl border border-purple-900/30 mb-4">
+        <div class="text-xs font-mono text-purple-400 mb-2">
+          <span>SLEEVE NOTES: INTRODUCTORY REFLECTION</span>
+        </div>
+        <p class="jx text-slate-300 text-sm leading-relaxed italic">
+          Music is how I understand my own feelings, and I play the guitar to sort them out. At the start of this course, I doubted that drawing, painting, or photography would ever click for someone who thinks in chords and beats. Slowly I found out that every art form runs on the same few things: balance, contrast, and rhythm. This EP is my proof. Side A holds the work we did in class. Side B holds the work I chose to explore by myself.
+        </p>
+      </div>
+
+      <!-- Table of contents -->
+      <div class="p-4 bg-[#14141A] rounded-xl border border-[#23232D]">
+        <span class="text-[10px] font-mono text-slate-500 block mb-2">TRACK LIST AT A GLANCE</span>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
+          <a href="#side-a-tracklist" class="px-3 py-2 min-h-[44px] flex items-center rounded bg-[#0B0B0E] border border-[#23232D] text-slate-200 hover:border-purple-500/50">Side A: Part I</a>
+          <a href="#side-b-records" class="px-3 py-2 min-h-[44px] flex items-center rounded bg-[#0B0B0E] border border-[#23232D] text-slate-200 hover:border-purple-500/50">Side B: Part II</a>
+          <a href="#gatefold-notes" class="px-3 py-2 min-h-[44px] flex items-center rounded bg-[#0B0B0E] border border-[#23232D] text-slate-200 hover:border-purple-500/50">Gatefold: Reflection</a>
+          <a href="#master-logs" class="px-3 py-2 min-h-[44px] flex items-center rounded bg-[#0B0B0E] border border-[#23232D] text-slate-200 hover:border-purple-500/50">Logs: Appendices</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PART I: SIDE A ==================== -->
+<section id="side-a-tracklist" class="relative z-10 py-14 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#23232D]">
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+    <div>
+      <span class="text-xs font-mono text-purple-400 uppercase tracking-widest">Part I • Side A</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">Course Tracklist</h2>
+      <p class="text-xs text-slate-400 mt-1">Six pieces from our GEARTS class, in the order we did them. Tap any picture to enlarge it. The two videos play right here on the page.</p>
+    </div>
+    <span class="text-xs font-mono text-slate-500 bg-[#14141A] px-3 py-1.5 rounded border border-[#23232D] w-fit">
+      6 TRACKS
+    </span>
+  </div>
+
+  <div class="bg-[#14141A] rounded-xl border border-[#23232D] overflow-hidden">
+
+    <!-- A1 -->
+    <div class="p-4 sm:p-5 border-b border-[#23232D] hover:bg-white/[0.02] transition-colors">
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+        <img src="images/AIArtAppropriation.jpg" alt="AI Art Appropriation output" class="zoomable w-full sm:w-64 aspect-[4/3] object-contain bg-[#0B0B0E] rounded-lg border border-[#23232D] shrink-0" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        <div class="flex-1 flex flex-col justify-center gap-3">
+          <div class="flex items-start gap-4">
+            <span class="font-mono text-sm font-bold text-purple-400 w-6">A1</span>
+            <div>
+              <h3 class="text-white font-semibold text-base sm:text-lg">AI Art Appropriation</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-1">Individual • An AI tool helped me remake a well-known artwork, since the activity asked us to use one. I decided what to change and what to keep.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <span class="text-slate-400 bg-[#0B0B0E] px-2.5 py-1 rounded border border-[#23232D]">Digital art</span>
+            <span class="text-tapeAmber bg-amber-500/10 px-2.5 py-1 rounded border border-amber-500/20">⚡ AI Disclosed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2 -->
+    <div class="p-4 sm:p-5 border-b border-[#23232D] hover:bg-white/[0.02] transition-colors">
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+        <img src="images/BlackOutPoetry.jpg" alt="Blackout poetry output" class="zoomable w-full sm:w-64 aspect-[4/3] object-contain bg-[#0B0B0E] rounded-lg border border-[#23232D] shrink-0" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        <div class="flex-1 flex flex-col justify-center gap-3">
+          <div class="flex items-start gap-4">
+            <span class="font-mono text-sm font-bold text-purple-400 w-6">A2</span>
+            <div>
+              <h3 class="text-white font-semibold text-base sm:text-lg">Blackout Poetry</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-1">Individual • I took a printed page, inked over most of the words, and left a few behind that read as a short poem of my own.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <span class="text-slate-400 bg-[#0B0B0E] px-2.5 py-1 rounded border border-[#23232D]">Blackout poetry</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A3 -->
+    <div class="p-4 sm:p-5 border-b border-[#23232D] hover:bg-white/[0.02] transition-colors">
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+        <img src="images/CoffeePainting.jpg" alt="Coffee painting output" class="zoomable w-full sm:w-64 aspect-[4/3] object-contain bg-[#0B0B0E] rounded-lg border border-[#23232D] shrink-0" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        <div class="flex-1 flex flex-col justify-center gap-3">
+          <div class="flex items-start gap-4">
+            <span class="font-mono text-sm font-bold text-purple-400 w-6">A3</span>
+            <div>
+              <h3 class="text-white font-semibold text-base sm:text-lg">Coffee Painting</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-1">Individual • I painted with brewed coffee instead of regular paint. The brown tones gave the picture a warm, soft feel I could not get from a paint tube.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <span class="text-slate-400 bg-[#0B0B0E] px-2.5 py-1 rounded border border-[#23232D]">Coffee on paper</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A4 -->
+    <div class="p-4 sm:p-5 border-b border-[#23232D] hover:bg-white/[0.02] transition-colors">
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+        <img src="images/ScribbleArt.jpg" alt="Scribble art output" class="zoomable w-full sm:w-64 aspect-[4/3] object-contain bg-[#0B0B0E] rounded-lg border border-[#23232D] shrink-0" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        <div class="flex-1 flex flex-col justify-center gap-3">
+          <div class="flex items-start gap-4">
+            <span class="font-mono text-sm font-bold text-purple-400 w-6">A4</span>
+            <div>
+              <h3 class="text-white font-semibold text-base sm:text-lg">Scribble Art</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-1">Individual • I began with loose, careless lines, then looked for shapes hiding inside them and colored those in until the page became a real picture.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <span class="text-slate-400 bg-[#0B0B0E] px-2.5 py-1 rounded border border-[#23232D]">Scribble art</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A5: Movie Analysis (video) -->
+    <div class="p-4 sm:p-5 border-b border-[#23232D] hover:bg-white/[0.02] transition-colors">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-4">
+          <span class="font-mono text-sm font-bold text-purple-400 w-6">A5</span>
+          <div>
+            <h3 class="text-white font-semibold text-sm sm:text-base">Movie Analysis: Sunshine</h3>
+            <p class="text-xs text-slate-400">Group 4 • Our group watched Sunshine and talked through its story, its message, and the way it uses color and images.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 font-mono text-xs self-start sm:self-auto">
+          <span class="text-slate-400 bg-[#0B0B0E] px-2.5 py-1 rounded border border-[#23232D]">Video analysis</span>
+          <span class="text-purple-300 bg-purple-950/40 px-2.5 py-1 rounded border border-purple-800/40">Role: Researcher and speaker</span>
+        </div>
+      </div>
+      <div class="vid-wide mt-4">
+        <iframe src="https://www.youtube.com/embed/izYpfbotgKU?playsinline=1&rel=0"
+          title="Movie Analysis: Sunshine"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- A6: Multimedia Video -->
+    <div class="p-4 sm:p-5 hover:bg-white/[0.02] transition-colors">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-4">
+          <span class="font-mono text-sm font-bold text-purple-400 w-6">A6</span>
+          <div>
+            <h3 class="text-white font-semibold text-sm sm:text-base">Multimedia Video</h3>
+            <p class="text-xs text-slate-400">Group 4 • Our group joined pictures, music, and written words into one video built around a single idea.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 font-mono text-xs self-start sm:self-auto">
+          <span class="text-slate-400 bg-[#0B0B0E] px-2.5 py-1 rounded border border-[#23232D]">Multimedia video</span>
+          <span class="text-purple-300 bg-purple-950/40 px-2.5 py-1 rounded border border-purple-800/40">Role: Video editor and sound</span>
+        </div>
+      </div>
+      <div class="vid-wide mt-4">
+        <iframe src="https://www.youtube.com/embed/fgmUdgU6C3E?playsinline=1&rel=0"
+          title="Multimedia Video"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== PART II: SIDE B ==================== -->
+<section id="side-b-records" class="relative z-10 py-14 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#23232D]">
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+    <div>
+      <span class="text-xs font-mono text-purple-400 uppercase tracking-widest">Part II • Side B</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">The 4 Side B Releases</h2>
+      <p class="text-xs text-slate-400 mt-1">Side B is the work I chose to do outside class: a drawing, two photographs, and a guitar cover. Tap a jacket to see the full work.</p>
+    </div>
+    <span class="text-xs font-mono text-purple-400 bg-purple-950/40 px-3 py-1.5 rounded border border-purple-800/40 w-fit">
+      4 TRACK RELEASES
+    </span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Track 01: Drawing -->
+    <div class="vinyl-unit bg-[#14141A] p-5 rounded-2xl border border-[#23232D] hover:border-purple-500/40">
+      <div class="relative w-full aspect-square bg-[#0B0B0E] rounded-xl overflow-hidden border border-[#23232D] mb-4 flex items-center justify-center p-4">
+        <div class="absolute right-[-10px] w-40 h-40 vinyl-disc pull-disc z-0 opacity-80"></div>
+        <div class="relative z-10 w-full h-full bg-[#181822] rounded-lg border border-white/5 overflow-hidden">
+          <img src="images/Drawing.jpg" alt="Drawing artwork" class="zoomable w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="flex items-center justify-between text-xs font-mono mb-1">
+        <span class="text-purple-400 font-bold">SIDE B • TRACK 01</span>
+        <span class="text-green-400 text-[10px] bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">NEW WORK</span>
+      </div>
+      <h3 class="text-white font-bold text-base mb-1">Lines in Rhythm</h3>
+      <p class="text-xs text-slate-400 mb-1">Drawing • Individual</p>
+      <p class="jx text-sm text-slate-400 mb-4">I treated this drawing like a long practice session. I went back over my lines again and again until they felt right, the same way I repeat a guitar riff. It taught me to stay calm when a part does not come out on the first try.</p>
+      <a href="#appendix1" class="text-xs text-purple-400 hover:text-purple-300 font-mono font-medium inline-flex items-center gap-1 min-h-[44px]">
+        <span>Open Log 01</span> →
+      </a>
+    </div>
+
+    <!-- Track 02: Photography 1 -->
+    <div class="vinyl-unit bg-[#14141A] p-5 rounded-2xl border border-[#23232D] hover:border-purple-500/40">
+      <div class="relative w-full aspect-square bg-[#0B0B0E] rounded-xl overflow-hidden border border-[#23232D] mb-4 flex items-center justify-center p-4">
+        <div class="absolute right-[-10px] w-40 h-40 vinyl-disc pull-disc z-0 opacity-80"></div>
+        <div class="relative z-10 w-full h-full bg-[#181822] rounded-lg border border-white/5 overflow-hidden">
+          <img src="images/Photography1.JPG" alt="Photography work 1" class="zoomable w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="flex items-center justify-between text-xs font-mono mb-1">
+        <span class="text-tapeAmber font-bold">SIDE B • TRACK 02</span>
+        <span class="text-green-400 text-[10px] bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">NEW WORK</span>
+      </div>
+      <h3 class="text-white font-bold text-base mb-1">Held in Light</h3>
+      <p class="text-xs text-slate-400 mb-1">Photography • Individual</p>
+      <p class="jx text-sm text-slate-400 mb-4">Before taking this shot, I stopped and checked where the light was coming from. A small step to the left or right changed the whole mood, so I took my time choosing where to stand. The camera only records what I decide to point it at.</p>
+      <a href="#appendix2" class="text-xs text-tapeAmber hover:text-amber-300 font-mono font-medium inline-flex items-center gap-1 min-h-[44px]">
+        <span>Open Log 02</span> →
+      </a>
+    </div>
+
+    <!-- Track 03: Photography 2 -->
+    <div class="vinyl-unit bg-[#14141A] p-5 rounded-2xl border border-[#23232D] hover:border-purple-500/40">
+      <div class="relative w-full aspect-square bg-[#0B0B0E] rounded-xl overflow-hidden border border-[#23232D] mb-4 flex items-center justify-center p-4">
+        <div class="absolute right-[-10px] w-40 h-40 vinyl-disc pull-disc z-0 opacity-80"></div>
+        <div class="relative z-10 w-full h-full bg-[#181822] rounded-lg border border-white/5 overflow-hidden">
+          <img src="images/Photography2.JPG" alt="Photography work 2" class="zoomable w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="flex items-center justify-between text-xs font-mono mb-1">
+        <span class="text-sky-400 font-bold">SIDE B • TRACK 03</span>
+        <span class="text-green-400 text-[10px] bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">NEW WORK</span>
+      </div>
+      <h3 class="text-white font-bold text-base mb-1">Still Moment</h3>
+      <p class="text-xs text-slate-400 mb-1">Photography • Individual</p>
+      <p class="jx text-sm text-slate-400 mb-4">My second photo came after I had already tried once, so I knew what to watch for. I checked the edges of the frame, the light, and the mood before pressing the button. Put next to the first, it looks calmer and more settled.</p>
+      <a href="#appendix3" class="text-xs text-sky-400 hover:text-sky-300 font-mono font-medium inline-flex items-center gap-1 min-h-[44px]">
+        <span>Open Log 03</span> →
+      </a>
+    </div>
+
+    <!-- Track 04: E-Guitar Cover (video) -->
+    <div class="vinyl-unit bg-[#14141A] p-5 rounded-2xl border-2 border-purple-500/50 shadow-lg shadow-purple-900/20 md:col-span-2 lg:col-span-3">
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        <div class="w-full sm:w-64 shrink-0">
+          <div class="vid-tall">
+            <iframe src="https://www.youtube.com/embed/L1VtkqQ_mps?playsinline=1&rel=0"
+              title="E-Guitar Cover"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="flex-1 w-full">
+          <div class="flex items-center justify-between text-xs font-mono mb-1">
+            <span class="text-purple-300 font-bold">SIDE B • TRACK 04 • KEY TRACK</span>
+            <span class="text-tapeAmber text-[10px] bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">FAMILIAR WORK</span>
+          </div>
+          <h3 class="text-white font-bold text-base mb-1">Strings After Dark</h3>
+          <p class="text-xs text-slate-400 mb-1">Electric guitar cover • Individual</p>
+          <p class="jx text-sm text-slate-400 mb-4">The guitar is the art form I already know best, so this is my one familiar work in Part II. I played a cover on my electric guitar and focused on timing, tone, and how each note feels. Those are the same things I now look for in a drawing or a photograph, and they are where my whole art journey began.</p>
+          <a href="#appendix4" class="text-xs text-purple-300 hover:text-white font-mono font-medium inline-flex items-center gap-1 min-h-[44px]">
+            <span>Open Log 04</span> →
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== FINAL REFLECTION ==================== -->
+<section id="gatefold-notes" class="relative z-10 py-14 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#23232D]">
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+    <div>
+      <span class="text-xs font-mono text-purple-400 uppercase tracking-widest">Final Reflection</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">Gatefold Booklet: Who Am I Becoming?</h2>
+      <p class="text-xs text-slate-400 mt-1">Four short answers about what this course did to the way I look at things.</p>
+    </div>
+    <span class="text-xs font-mono text-slate-400 bg-[#14141A] px-3 py-1.5 rounded border border-[#23232D] w-fit">
+      4 QUESTIONS
+    </span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#14141A] p-5 sm:p-8 rounded-2xl border border-[#23232D]">
+
+    <div class="p-5 bg-[#0B0B0E] rounded-xl border border-[#23232D]">
+      <span class="text-xs font-mono text-purple-400 font-semibold block mb-2">01 • PERSPECTIVE SHIFT</span>
+      <h4 class="text-white font-semibold text-sm mb-2">How has this course changed my understanding of art?</h4>
+      <p class="jx text-sm text-slate-400 leading-relaxed">
+        Before this class, I believed art belonged to people with a special talent. The blackout poetry and the coffee painting proved me wrong, because neither one needed a perfect hand. They needed choices. Picking which words to keep felt like picking notes for a melody, and using coffee instead of paint felt like switching instruments. Now when I see a picture, I ask what it is trying to say, the same way I do with a song.
+      </p>
+    </div>
+
+    <div class="p-5 bg-[#0B0B0E] rounded-xl border border-[#23232D]">
+      <span class="text-xs font-mono text-tapeAmber font-semibold block mb-2">02 • SELF-DISCOVERY</span>
+      <h4 class="text-white font-semibold text-sm mb-2">What did I discover about myself through creating art?</h4>
+      <p class="jx text-sm text-slate-400 leading-relaxed">
+        I found out that I can stay with a task longer than I expected. The drawing and the photographs pushed me to redo small parts, which is what I do when a guitar passage will not sound right. The scribble art showed me that a messy start can still turn into something good. I used to give up when something looked wrong. Now I just try another version.
+      </p>
+    </div>
+
+    <div class="p-5 bg-[#0B0B0E] rounded-xl border border-[#23232D]">
+      <span class="text-xs font-mono text-emerald-400 font-semibold block mb-2">03 • IDENTITY AND VALUES</span>
+      <h4 class="text-white font-semibold text-sm mb-2">How does art connect to my identity, culture, and values?</h4>
+      <p class="jx text-sm text-slate-400 leading-relaxed">
+        The guitar is part of who I am, and this course showed me that drawing and photography come from the same place: wanting to say something that plain talk cannot. Working with my group on the Sunshine analysis and the multimedia video also taught me to listen. Each member noticed different things in the film, and putting our views together gave us a fuller answer than any one of us had alone.
+      </p>
+    </div>
+
+    <div class="p-5 bg-[#0B0B0E] rounded-xl border border-[#23232D]">
+      <span class="text-xs font-mono text-purple-400 font-semibold block mb-2">04 • LOOKING AHEAD</span>
+      <h4 class="text-white font-semibold text-sm mb-2">Where do I go from here? Who am I becoming?</h4>
+      <p class="jx text-sm text-slate-400 leading-relaxed">
+        I plan to keep playing and keep making art, and to let each one feed the other. I want to be the kind of person who looks twice, tries something unfamiliar, and shows work before it feels perfect. This EP is only the first track.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="mt-4 p-4 rounded-xl bg-[#14141A] border border-[#23232D] text-xs font-mono text-slate-400">
+    AI NOTE: AI WAS USED ONLY IN TRACK A1, BECAUSE THE ACTIVITY ASKED FOR IT. NO AI WAS USED IN ANY PART II WORK.
+  </div>
+</section>
+
+<!-- ==================== APPENDICES ==================== -->
+<section id="master-logs" class="relative z-10 py-14 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#23232D]">
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+    <div>
+      <span class="text-xs font-mono text-purple-400 uppercase tracking-widest">Appendices</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">Master Logs: Behind the Scenes</h2>
+      <p class="text-xs text-slate-400 mt-1">Pictures and links that show how each Side B work was made, following the Side B track order. Tap a picture to enlarge it.</p>
+    </div>
+    <span class="text-xs font-mono text-slate-500 bg-[#14141A] px-3 py-1.5 rounded border border-[#23232D] w-fit">
+      4 LOGS
+    </span>
+  </div>
+
+  <div class="space-y-6">
+
+    <!-- Appendix 1 -->
+    <div id="appendix1" class="bg-[#14141A] p-5 rounded-xl border border-[#23232D]">
+      <div class="flex justify-between items-center mb-3 pb-2 border-b border-[#23232D] text-xs font-mono">
+        <span class="text-white font-bold">LOG_01: LINES IN RHYTHM (DRAWING)</span>
+        <span class="text-purple-400">APPENDIX 1</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <figure class="bg-[#0B0B0E] rounded border border-[#23232D] overflow-hidden">
+          <img src="images/DrawingProof1.jpg" alt="Drawing, process shot 1" class="zoomable w-full aspect-[4/3] object-contain bg-[#0B0B0E]" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <figcaption class="text-xs text-slate-400 p-2">Drawing, process shot 1</figcaption>
+        </figure>
+        <figure class="bg-[#0B0B0E] rounded border border-[#23232D] overflow-hidden">
+          <img src="images/DrawingProof2.jpg" alt="Drawing, process shot 2" class="zoomable w-full aspect-[4/3] object-contain bg-[#0B0B0E]" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <figcaption class="text-xs text-slate-400 p-2">Drawing, process shot 2</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Appendix 2 -->
+    <div id="appendix2" class="bg-[#14141A] p-5 rounded-xl border border-[#23232D]">
+      <div class="flex justify-between items-center mb-3 pb-2 border-b border-[#23232D] text-xs font-mono">
+        <span class="text-white font-bold">LOG_02: HELD IN LIGHT (PHOTOGRAPHY)</span>
+        <span class="text-tapeAmber">APPENDIX 2</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <figure class="bg-[#0B0B0E] rounded border border-[#23232D] overflow-hidden">
+          <img src="images/Photography1Proof.PNG" alt="Photography 1, supporting screenshot" class="zoomable w-full aspect-[4/3] object-contain bg-[#0B0B0E]" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <figcaption class="text-xs text-slate-400 p-2">Photography 1, supporting screenshot</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Appendix 3 -->
+    <div id="appendix3" class="bg-[#14141A] p-5 rounded-xl border border-[#23232D]">
+      <div class="flex justify-between items-center mb-3 pb-2 border-b border-[#23232D] text-xs font-mono">
+        <span class="text-white font-bold">LOG_03: STILL MOMENT (PHOTOGRAPHY)</span>
+        <span class="text-sky-400">APPENDIX 3</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <figure class="bg-[#0B0B0E] rounded border border-[#23232D] overflow-hidden">
+          <img src="images/Photography2Proof.PNG" alt="Photography 2, supporting screenshot" class="zoomable w-full aspect-[4/3] object-contain bg-[#0B0B0E]" loading="lazy" decoding="async" onerror="this.style.display='none'">
+          <figcaption class="text-xs text-slate-400 p-2">Photography 2, supporting screenshot</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Appendix 4 -->
+    <div id="appendix4" class="bg-[#14141A] p-5 rounded-xl border border-[#23232D]">
+      <div class="flex justify-between items-center mb-3 pb-2 border-b border-[#23232D] text-xs font-mono">
+        <span class="text-white font-bold">LOG_04: STRINGS AFTER DARK (E-GUITAR COVER)</span>
+        <span class="text-purple-300">APPENDIX 4</span>
+      </div>
+      <ul class="text-sm" style="margin-left:20px; list-style:disc;">
+        <li><a href="https://www.youtube.com/shorts/L1VtkqQ_mps" target="_blank" rel="noopener" class="text-purple-300 hover:text-white inline-block py-1">Open the guitar cover on its YouTube page</a></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+<!-- ==================== FOOTER ==================== -->
+<footer class="relative z-10 py-12 border-t border-[#23232D] text-center text-xs font-mono text-slate-500 px-4" style="padding-bottom: calc(3rem + env(safe-area-inset-bottom));">
+  <p class="text-slate-400 font-bold mb-1">NOCTURNE EP • END OF SIDE B</p>
+  <p>Made by Renz Allen A. Banan, BSIT 3A, for GEARTS Art Appreciation</p>
+  <p class="mt-3 max-w-xl mx-auto">That is the last track. Thank you for playing the whole record.</p>
+</footer>
+
+<!-- ==================== IMAGE VIEWER ==================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close image" type="button">&times;</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
+<script>
+  /* Play / pause the turntable */
+  var isSpinning = true;
+  function toggleSpin() {
+    var disc = document.querySelector('.vinyl-disc');
+    var btnIcon = document.getElementById('play-icon');
+    var btnText = document.getElementById('play-text');
+    if (!disc) return;
+    if (isSpinning) {
+      disc.classList.remove('spinning');
+      btnIcon.textContent = '▶';
+      btnText.textContent = 'PLAY';
+      isSpinning = false;
+    } else {
+      disc.classList.add('spinning');
+      btnIcon.textContent = '⏸';
+      btnText.textContent = 'PAUSE';
+      isSpinning = true;
+    }
+  }
+
+  /* Click or tap to view full image */
+  (function(){
+    var box = document.getElementById('lightbox'),
+        big = document.getElementById('lbImg'),
+        cap = document.getElementById('lbCap'),
+        closeBtn = document.getElementById('lbClose'),
+        lastFocus = null;
+
+    function openViewer(img){
+      lastFocus = document.activeElement;
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt;
+      var fig = img.closest('figure');
+      var figcap = fig ? fig.querySelector('figcaption') : null;
+      cap.textContent = figcap ? figcap.textContent : img.alt;
+      box.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function closeViewer(){
+      box.classList.remove('open');
+      document.body.style.overflow = '';
+      big.src = '';
+      if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
+    }
+
+    document.querySelectorAll('.zoomable').forEach(function(img){
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      img.addEventListener('click', function(){ openViewer(img); });
+      img.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openViewer(img); }
+      });
+    });
+
+    box.addEventListener('click', closeViewer);
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && box.classList.contains('open')) { closeViewer(); }
+    });
+  })();
+</script>
+
+</body>
+</html>
